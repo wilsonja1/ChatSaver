@@ -12,9 +12,18 @@ namespace ChatSaver
 {
     public partial class Form1 : Form
     {
+        Model db;
+
         public Form1()
         {
+            db = new Model();
+
             InitializeComponent();
+        }
+
+        private void SettingButton_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
