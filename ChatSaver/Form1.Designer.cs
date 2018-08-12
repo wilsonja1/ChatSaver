@@ -36,6 +36,8 @@
             this.NameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.GameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ViewerColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ChannelName = new System.Windows.Forms.TextBox();
+            this.ConnectButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SettingButton
@@ -103,12 +105,31 @@
             // 
             this.ViewerColumn.Text = "Viewers";
             // 
+            // ChannelName
+            // 
+            this.ChannelName.Location = new System.Drawing.Point(464, 77);
+            this.ChannelName.Name = "ChannelName";
+            this.ChannelName.Size = new System.Drawing.Size(100, 20);
+            this.ChannelName.TabIndex = 5;
+            // 
+            // ConnectButton
+            // 
+            this.ConnectButton.Location = new System.Drawing.Point(587, 73);
+            this.ConnectButton.Name = "ConnectButton";
+            this.ConnectButton.Size = new System.Drawing.Size(75, 23);
+            this.ConnectButton.TabIndex = 6;
+            this.ConnectButton.Text = "Connect";
+            this.ConnectButton.UseVisualStyleBackColor = true;
+            this.ConnectButton.Click += new System.EventHandler(this.ConnectButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ConnectButton);
+            this.Controls.Add(this.ChannelName);
             this.Controls.Add(this.ShowStream);
             this.Controls.Add(this.StreamList);
             this.Controls.Add(this.NameLabel);
@@ -131,6 +152,8 @@
         private System.Windows.Forms.ColumnHeader NameColumn;
         private System.Windows.Forms.ColumnHeader GameColumn;
         private System.Windows.Forms.ColumnHeader ViewerColumn;
+        private System.Windows.Forms.TextBox ChannelName;
+        private System.Windows.Forms.Button ConnectButton;
     }
 }
 
