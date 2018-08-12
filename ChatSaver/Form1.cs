@@ -53,7 +53,9 @@ namespace ChatSaver
                 string name = i["channel"]["name"];
                 string game = i["game"];
                 string viewer = i["viewers"];
-                var item1 = new ListViewItem(new[] { name, game, viewer });
+                ListViewItem item1 = new ListViewItem(name);
+                item1.SubItems.Add(game);
+                item1.SubItems.Add(viewer);
                 StreamList.Items.Add(item1);
             }
         }

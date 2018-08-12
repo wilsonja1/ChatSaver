@@ -33,9 +33,9 @@
             this.NameLabel = new System.Windows.Forms.Label();
             this.StreamList = new System.Windows.Forms.ListView();
             this.ShowStream = new System.Windows.Forms.Button();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.NameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.GameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ViewerColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // SettingButton
@@ -69,14 +69,15 @@
             // StreamList
             // 
             this.StreamList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
+            this.NameColumn,
+            this.GameColumn,
+            this.ViewerColumn});
             this.StreamList.Location = new System.Drawing.Point(79, 77);
             this.StreamList.Name = "StreamList";
             this.StreamList.Size = new System.Drawing.Size(338, 325);
             this.StreamList.TabIndex = 3;
             this.StreamList.UseCompatibleStateImageBehavior = false;
+            this.StreamList.View = System.Windows.Forms.View.Details;
             // 
             // ShowStream
             // 
@@ -88,22 +89,25 @@
             this.ShowStream.UseVisualStyleBackColor = true;
             this.ShowStream.Click += new System.EventHandler(this.ShowStream_Click);
             // 
-            // columnHeader1
+            // NameColumn
             // 
-            this.columnHeader1.Text = "Name";
+            this.NameColumn.Text = "Name";
+            this.NameColumn.Width = 80;
             // 
-            // columnHeader2
+            // GameColumn
             // 
-            this.columnHeader2.Text = "Game";
+            this.GameColumn.Text = "Game";
+            this.GameColumn.Width = 100;
             // 
-            // columnHeader3
+            // ViewerColumn
             // 
-            this.columnHeader3.Text = "Viewer";
+            this.ViewerColumn.Text = "Viewers";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.ShowStream);
             this.Controls.Add(this.StreamList);
@@ -124,9 +128,9 @@
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.ListView StreamList;
         private System.Windows.Forms.Button ShowStream;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader NameColumn;
+        private System.Windows.Forms.ColumnHeader GameColumn;
+        private System.Windows.Forms.ColumnHeader ViewerColumn;
     }
 }
 
