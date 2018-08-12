@@ -31,6 +31,11 @@
             this.SettingButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
+            this.StreamList = new System.Windows.Forms.ListView();
+            this.ShowStream = new System.Windows.Forms.Button();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // SettingButton
@@ -61,11 +66,47 @@
             this.NameLabel.TabIndex = 2;
             this.NameLabel.Text = "label2";
             // 
+            // StreamList
+            // 
+            this.StreamList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.StreamList.Location = new System.Drawing.Point(79, 77);
+            this.StreamList.Name = "StreamList";
+            this.StreamList.Size = new System.Drawing.Size(338, 325);
+            this.StreamList.TabIndex = 3;
+            this.StreamList.UseCompatibleStateImageBehavior = false;
+            // 
+            // ShowStream
+            // 
+            this.ShowStream.Location = new System.Drawing.Point(79, 48);
+            this.ShowStream.Name = "ShowStream";
+            this.ShowStream.Size = new System.Drawing.Size(122, 23);
+            this.ShowStream.TabIndex = 4;
+            this.ShowStream.Text = "Show Streams";
+            this.ShowStream.UseVisualStyleBackColor = true;
+            this.ShowStream.Click += new System.EventHandler(this.ShowStream_Click);
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Name";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Game";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Viewer";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ShowStream);
+            this.Controls.Add(this.StreamList);
             this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.SettingButton);
@@ -81,6 +122,11 @@
         private System.Windows.Forms.Button SettingButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label NameLabel;
+        private System.Windows.Forms.ListView StreamList;
+        private System.Windows.Forms.Button ShowStream;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }
 
