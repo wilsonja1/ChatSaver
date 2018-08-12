@@ -23,7 +23,11 @@ namespace ChatSaver
 
         private void SettingButton_Click(object sender, EventArgs e)
         {
-            
+            using (Form2 f2 = new Form2())
+            {
+                f2.ShowDialog();
+
+            }
         }
     }
 }
