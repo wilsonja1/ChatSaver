@@ -63,11 +63,8 @@ namespace ChatSaver
         private void ConnectButton_Click(object sender, EventArgs e)
         {
             Connection irc = new Connection("irc.twitch.tv", 6667, user.UserName, user.OauthToken, ChannelName.Text);
-            using (Form3 f3 = new Form3(irc))
-            {
-                f3.ShowDialog();
-
-            }
+            Form3 f3 = new Form3(irc)
+            f3.ShowDialog();
         }
     }
 }

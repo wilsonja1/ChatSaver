@@ -16,7 +16,9 @@ namespace ChatSaver
         public Form3(Connection e)
         {
             irc = e;
-            MessageBox.Show("here");
+            PingSender ping = new PingSender(irc);
+            ping.Start();
+
             InitializeComponent();
 
             label2.Text = irc.channel;
@@ -24,8 +26,6 @@ namespace ChatSaver
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("wassup");
-
                 while (true)
                 {
                     string msg = irc.ReadMessage();
