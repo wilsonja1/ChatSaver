@@ -15,6 +15,7 @@ namespace ChatSaver
     {
         Model db;
         User user;
+        List<Connection> irc;
 
         public Form1()
         {
@@ -24,10 +25,6 @@ namespace ChatSaver
             InitializeComponent();
 
             NameLabel.Text = user.UserName;
-            //StreamList.Columns.Add("Name", 100);
-            //StreamList.Columns.Add("Game", 100);
-            //StreamList.Columns.Add("Viewers", 100);
-
         }
 
         private void SettingButton_Click(object sender, EventArgs e)
@@ -43,7 +40,7 @@ namespace ChatSaver
         {
             WebClient webClient = new WebClient();
             webClient.QueryString.Add("oauth_token", user.OauthToken);
-            webClient.QueryString.Add("limit", "5");
+            webClient.QueryString.Add("limit", "10");
             string result = webClient.DownloadString("https://api.twitch.tv/kraken/streams");
             dynamic myjson = Newtonsoft.Json.JsonConvert.DeserializeObject(result);
 
@@ -62,7 +59,7 @@ namespace ChatSaver
 
         private void ConnectButton_Click(object sender, EventArgs e)
         {
-            List<Connection> irc = new List<Connection>();
+            irc = new List<Connection>();
             if (!string.IsNullOrWhiteSpace(ChannelName.Text))
             {
                 irc.Add(new Connection("irc.twitch.tv", 6667, user.UserName, user.OauthToken, ChannelName.Text));
@@ -80,12 +77,8 @@ namespace ChatSaver
             }
             foreach(Connection x in irc)
             {
-                string[] row = new string[] { x.channel };
-                ConnectedStream.Rows.Add(row);
+                ConnectedStream.Rows.Add(x.channel, true, false, "Chat");
             }
-
-            //Form3 f3 = new Form3(irc);
-            //f3.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -93,6 +86,18 @@ namespace ChatSaver
             var firstSelectedItem = StreamList.SelectedItems[0];
             MessageBox.Show(firstSelectedItem.Index.ToString());
 
+        }
+
+        private void ConnectedStream_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                Form3 f3 = new Form3(irc[e.ColumnIndex-2]);
+                f3.ShowDialog();
+            }
         }
     }
 }

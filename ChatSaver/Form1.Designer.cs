@@ -136,6 +136,7 @@
             this.ConnectedStream.AllowUserToDeleteRows = false;
             this.ConnectedStream.AllowUserToResizeColumns = false;
             this.ConnectedStream.AllowUserToResizeRows = false;
+            this.ConnectedStream.BackgroundColor = System.Drawing.SystemColors.Window;
             this.ConnectedStream.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ConnectedStream.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -147,6 +148,7 @@
             this.ConnectedStream.ReadOnly = true;
             this.ConnectedStream.Size = new System.Drawing.Size(284, 325);
             this.ConnectedStream.TabIndex = 8;
+            this.ConnectedStream.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ConnectedStream_CellContentClick);
             // 
             // Column1
             // 
