@@ -62,14 +62,28 @@ namespace ChatSaver
 
         private void ConnectButton_Click(object sender, EventArgs e)
         {
-            if (ChannelName.Text != null)
+            List<Connection> irc = new List<Connection>();
+            if (!string.IsNullOrWhiteSpace(ChannelName.Text))
             {
-                Connection irc = new Connection("irc.twitch.tv", 6667, user.UserName, user.OauthToken, ChannelName.Text);
+                irc.Add(new Connection("irc.twitch.tv", 6667, user.UserName, user.OauthToken, ChannelName.Text));
+                ChannelName.Clear();
             }
             else
             {
-
+                foreach (ListViewItem i in StreamList.Items)
+                {
+                    if (i.Checked)
+                    {
+                        irc.Add(new Connection("irc.twitch.tv", 6667, user.UserName, user.OauthToken, i.SubItems[0].Text));
+                    }
+                }
             }
+            foreach(Connection x in irc)
+            {
+                string[] row = new string[] { x.channel };
+                ConnectedStream.Rows.Add(row);
+            }
+
             //Form3 f3 = new Form3(irc);
             //f3.ShowDialog();
         }
