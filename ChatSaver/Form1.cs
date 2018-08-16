@@ -16,6 +16,7 @@ namespace ChatSaver
         Model db;
         User user;
         List<Connection> irc;
+        List<PingSender> ping;
 
         public Form1()
         {
@@ -75,9 +76,20 @@ namespace ChatSaver
                     }
                 }
             }
-            foreach(Connection x in irc)
+            //This will be problem multiply adding them.
+            foreach (Connection x in irc)
             {
                 ConnectedStream.Rows.Add(x.channel, true, false, "Chat");
+            }
+            StartPing();
+        }
+
+        private void StartPing()
+        {
+            foreach(Connection x in irc)
+            {
+                ping.Add(new PingSender(x));
+                ping.Last().Start();
             }
         }
 

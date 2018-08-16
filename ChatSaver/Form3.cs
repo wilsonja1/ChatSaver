@@ -16,8 +16,6 @@ namespace ChatSaver
         public Form3(Connection e)
         {
             irc = e;
-            PingSender ping = new PingSender(irc);
-            ping.Start();
 
             InitializeComponent();
 
