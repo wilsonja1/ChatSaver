@@ -45,6 +45,7 @@ namespace ChatSaver
         private void ShowStream_Click(object sender, EventArgs e)
         {
             pageindex = 0;
+            UpdateStreamList();
         }
 
         public void UpdateStreamList()
