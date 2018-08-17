@@ -48,5 +48,17 @@ namespace ChatSaver
                 dataGridView1.Rows.Add(i.Name, i.Message);
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int num = (int) numericUpDown1.Value;
+            IQueryable<Chat> z = db.Chat.Take(num);
+            dataGridView1.Rows.Clear();
+
+            foreach (var i in z)
+            {
+                dataGridView1.Rows.Add(i.Name, i.Message);
+            }
+        }
     }
 }
