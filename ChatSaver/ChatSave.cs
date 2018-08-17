@@ -8,15 +8,17 @@ using System.Windows.Forms;
 
 namespace ChatSaver
 {
-    class ChatSave
+    public class ChatSave
     {
         private Connection _irc;
         private Thread Saver;
         private Model db;
+        public bool ThreadRun;
 
         public ChatSave(Connection irc)
         {
             _irc = irc;
+            ThreadRun = true;
             Saver = new Thread(new ThreadStart(this.Run));
         }
 
@@ -29,7 +31,7 @@ namespace ChatSaver
         public void Run()
         {
             db = new Model();
-            while (true)
+            while (ThreadRun)
             {
                 string x = _irc.ReadMessage();
                 string name = "";

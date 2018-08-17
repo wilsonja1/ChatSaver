@@ -13,6 +13,9 @@ namespace ChatSaver
         public string userName;
         public string channel;
 
+        public PingSender ping;
+        public ChatSave save;
+
         private TcpClient _tcpClient;
         private StreamReader _inputStream;
         private StreamWriter _outputStream;
@@ -41,6 +44,9 @@ namespace ChatSaver
             {
                 Console.WriteLine(ex.Message);
             }
+
+            ping = new PingSender(this);
+            save = new ChatSave(this);
         }
 
         public void SendIrcMessage(string message)
