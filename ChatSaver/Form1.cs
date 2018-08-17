@@ -131,5 +131,13 @@ namespace ChatSaver
             pageindex += 15;
             UpdateStreamList();
         }
+
+        private void stats_Click(object sender, EventArgs e)
+        {
+            using (Form4 f4 = new Form4())
+            {
+                f4.ShowDialog();
+            }
+        }
     }
 }

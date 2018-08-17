@@ -26,7 +26,7 @@ namespace ChatSaver
         {
                 while (true)
                 {
-                    string msg = irc.ReadMessage();
+                    string msg = irc.ReadMessage2();
                     textBox1.AppendText(Environment.NewLine + " >> " + msg);
                     System.Threading.Thread.Sleep(240);
                     Application.DoEvents();

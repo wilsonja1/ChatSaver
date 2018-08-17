@@ -44,6 +44,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.leftbutton = new System.Windows.Forms.Button();
             this.rightbutton = new System.Windows.Forms.Button();
+            this.stats = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectedStream)).BeginInit();
             this.SuspendLayout();
             // 
@@ -189,12 +190,23 @@
             this.rightbutton.UseVisualStyleBackColor = true;
             this.rightbutton.Click += new System.EventHandler(this.rightbutton_Click);
             // 
+            // stats
+            // 
+            this.stats.Location = new System.Drawing.Point(558, 48);
+            this.stats.Name = "stats";
+            this.stats.Size = new System.Drawing.Size(75, 23);
+            this.stats.TabIndex = 11;
+            this.stats.Text = "Stats";
+            this.stats.UseVisualStyleBackColor = true;
+            this.stats.Click += new System.EventHandler(this.stats_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(690, 504);
+            this.Controls.Add(this.stats);
             this.Controls.Add(this.rightbutton);
             this.Controls.Add(this.leftbutton);
             this.Controls.Add(this.ConnectedStream);
@@ -231,6 +243,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn Column2;
         private System.Windows.Forms.Button leftbutton;
         private System.Windows.Forms.Button rightbutton;
+        private System.Windows.Forms.Button stats;
     }
 }
 

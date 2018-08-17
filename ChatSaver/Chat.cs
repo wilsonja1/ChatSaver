@@ -21,5 +21,10 @@ namespace ChatSaver
             Time = time;
             Channel = channel;
         }
+
+        public Chat() : base()
+        {
+
+        }
     }
 }

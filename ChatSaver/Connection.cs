@@ -18,7 +18,12 @@ namespace ChatSaver
 
         private TcpClient _tcpClient;
         private StreamReader _inputStream;
+        private StreamReader _inputStream2;
+
+        private MemoryStream _copyStream;
+
         private StreamWriter _outputStream;
+        private StreamWriter _outputStream2;
 
         public Connection(string ip, int port, string userName, string password, string channel)
         {
@@ -30,6 +35,10 @@ namespace ChatSaver
                 _tcpClient = new TcpClient(ip, port);
                 _inputStream = new StreamReader(_tcpClient.GetStream());
                 _outputStream = new StreamWriter(_tcpClient.GetStream());
+
+                _copyStream = new MemoryStream();
+                _inputStream2 = new StreamReader(_copyStream);
+                _outputStream2 = new StreamWriter(_copyStream);
 
                 password = "oauth:" + password;
 
@@ -80,6 +89,22 @@ namespace ChatSaver
             try
             {
                 string message = _inputStream.ReadLine();
+                _outputStream2.WriteLine(message);
+                _outputStream2.Flush();
+                return message;
+            }
+            catch (Exception ex)
+            {
+                return "Error receiving message: " + ex.Message;
+            }
+        }
+
+        public string ReadMessage2()
+        {
+            try
+            {
+                _copyStream.Position = 0;
+                string message = _inputStream2.ReadLine();
                 return message;
             }
             catch (Exception ex)
