@@ -21,5 +21,6 @@ namespace ChatSaver
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Chat> Chat { get; set; }
     }
 }

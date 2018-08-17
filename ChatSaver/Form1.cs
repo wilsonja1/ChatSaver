@@ -17,11 +17,15 @@ namespace ChatSaver
         User user;
         List<Connection> irc;
         List<PingSender> ping;
+        List<ChatSave> save;
 
         public Form1()
         {
             db = new Model();
             user = db.User.First();
+            irc = new List<Connection>();
+            ping = new List<PingSender>();
+            save = new List<ChatSave>();
 
             InitializeComponent();
 
@@ -30,11 +34,14 @@ namespace ChatSaver
 
         private void SettingButton_Click(object sender, EventArgs e)
         {
-            using (Form2 f2 = new Form2())
+            Form2 f2 = new Form2();
+            f2.Closed += delegate
             {
-                f2.ShowDialog();
+                user = db.User.First();
+                NameLabel.Text = user.UserName;
+            };
+            f2.Show();
 
-            }
         }
 
         private void ShowStream_Click(object sender, EventArgs e)
@@ -60,7 +67,6 @@ namespace ChatSaver
 
         private void ConnectButton_Click(object sender, EventArgs e)
         {
-            irc = new List<Connection>();
             if (!string.IsNullOrWhiteSpace(ChannelName.Text))
             {
                 irc.Add(new Connection("irc.twitch.tv", 6667, user.UserName, user.OauthToken, ChannelName.Text));
@@ -73,31 +79,15 @@ namespace ChatSaver
                     if (i.Checked)
                     {
                         irc.Add(new Connection("irc.twitch.tv", 6667, user.UserName, user.OauthToken, i.SubItems[0].Text));
+                        ping.Add(new PingSender(irc.Last()));
+                        ping.Last().Start();
+                        save.Add(new ChatSave(irc.Last()));
+                        save.Last().Start();
+                        ConnectedStream.Rows.Add(irc.Last().channel, true, false, "Chat");
+                        i.Checked = false;
                     }
                 }
             }
-            //This will be problem multiply adding them.
-            foreach (Connection x in irc)
-            {
-                ConnectedStream.Rows.Add(x.channel, true, false, "Chat");
-            }
-            StartPing();
-        }
-
-        private void StartPing()
-        {
-            foreach(Connection x in irc)
-            {
-                ping.Add(new PingSender(x));
-                ping.Last().Start();
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var firstSelectedItem = StreamList.SelectedItems[0];
-            MessageBox.Show(firstSelectedItem.Index.ToString());
-
         }
 
         private void ConnectedStream_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -107,7 +97,7 @@ namespace ChatSaver
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-                Form3 f3 = new Form3(irc[e.ColumnIndex-2]);
+                Form3 f3 = new Form3(irc[e.RowIndex]);
                 f3.ShowDialog();
             }
         }
