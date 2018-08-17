@@ -53,7 +53,7 @@ namespace ChatSaver
 
         private void button1_Click(object sender, EventArgs e)
         {
-            irc.SendIrcMessage(textBox2.Text);
+            irc.SendPublicChatMessage(textBox2.Text);
             AppendTextBox(textBox2.Text);
             textBox2.Text = "";          
         }
