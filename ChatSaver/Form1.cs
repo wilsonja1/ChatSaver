@@ -139,5 +139,22 @@ namespace ChatSaver
                 f4.ShowDialog();
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                System.IO.StreamReader sr = new System.IO.StreamReader(openFileDialog1.FileName);
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    irc.Add(new Connection("irc.twitch.tv", 6667, user.UserName, user.OauthToken, line));
+                    irc.Last().ping.Start();
+                    irc.Last().save.Start();
+                    ConnectedStream.Rows.Add(irc.Last().channel, "Chat", "Remove");
+                }
+                sr.Close();
+            }
+        }
     }
 }

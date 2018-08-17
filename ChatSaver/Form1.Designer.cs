@@ -45,6 +45,8 @@
             this.leftbutton = new System.Windows.Forms.Button();
             this.rightbutton = new System.Windows.Forms.Button();
             this.stats = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectedStream)).BeginInit();
             this.SuspendLayout();
             // 
@@ -200,12 +202,27 @@
             this.stats.UseVisualStyleBackColor = true;
             this.stats.Click += new System.EventHandler(this.stats_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(79, 444);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Load List";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(690, 504);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.stats);
             this.Controls.Add(this.rightbutton);
             this.Controls.Add(this.leftbutton);
@@ -244,6 +261,8 @@
         private System.Windows.Forms.Button leftbutton;
         private System.Windows.Forms.Button rightbutton;
         private System.Windows.Forms.Button stats;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
