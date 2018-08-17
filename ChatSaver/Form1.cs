@@ -16,16 +16,14 @@ namespace ChatSaver
         Model db;
         User user;
         List<Connection> irc;
-        List<PingSender> ping;
-        List<ChatSave> save;
+        int pageindex;
 
         public Form1()
         {
             db = new Model();
             user = db.User.First();
             irc = new List<Connection>();
-            ping = new List<PingSender>();
-            save = new List<ChatSave>();
+            pageindex = 0;
 
             InitializeComponent();
 
@@ -46,12 +44,19 @@ namespace ChatSaver
 
         private void ShowStream_Click(object sender, EventArgs e)
         {
+            pageindex = 0;
+        }
+
+        public void UpdateStreamList()
+        {
             WebClient webClient = new WebClient();
             webClient.QueryString.Add("oauth_token", user.OauthToken);
-            webClient.QueryString.Add("limit", "10");
+            webClient.QueryString.Add("limit", "15");
+            webClient.QueryString.Add("offset", (pageindex).ToString());
             string result = webClient.DownloadString("https://api.twitch.tv/kraken/streams");
             dynamic myjson = Newtonsoft.Json.JsonConvert.DeserializeObject(result);
 
+            StreamList.Items.Clear();
             var x = myjson["streams"][0]["channel"]["name"];
             foreach (var i in myjson["streams"])
             {
@@ -70,6 +75,9 @@ namespace ChatSaver
             if (!string.IsNullOrWhiteSpace(ChannelName.Text))
             {
                 irc.Add(new Connection("irc.twitch.tv", 6667, user.UserName, user.OauthToken, ChannelName.Text));
+                irc.Last().ping.Start();
+                irc.Last().save.Start();
+                ConnectedStream.Rows.Add(irc.Last().channel, "Chat", "Remove");
                 ChannelName.Clear();
             }
             else
@@ -79,11 +87,9 @@ namespace ChatSaver
                     if (i.Checked)
                     {
                         irc.Add(new Connection("irc.twitch.tv", 6667, user.UserName, user.OauthToken, i.SubItems[0].Text));
-                        ping.Add(new PingSender(irc.Last()));
-                        ping.Last().Start();
-                        save.Add(new ChatSave(irc.Last()));
-                        save.Last().Start();
-                        ConnectedStream.Rows.Add(irc.Last().channel, true, false, "Chat");
+                        irc.Last().ping.Start();
+                        irc.Last().save.Start();
+                        ConnectedStream.Rows.Add(irc.Last().channel, "Chat", "Remove");
                         i.Checked = false;
                     }
                 }
@@ -95,11 +101,34 @@ namespace ChatSaver
             var senderGrid = (DataGridView)sender;
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
-                e.RowIndex >= 0)
+                e.ColumnIndex == 1)
             {
                 Form3 f3 = new Form3(irc[e.RowIndex]);
                 f3.ShowDialog();
             }
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.ColumnIndex == 2)
+            {
+                irc[e.RowIndex].save.ThreadRun = false;
+                irc[e.RowIndex].ping.ThreadRun = false;
+                irc.RemoveAt(e.RowIndex);
+                ConnectedStream.Rows.RemoveAt(e.RowIndex);
+            }
+        }
+
+        private void leftbutton_Click(object sender, EventArgs e)
+        {
+            if (pageindex >= 15)
+            {
+                pageindex -= 15;
+                UpdateStreamList();
+            }
+        }
+
+        private void rightbutton_Click(object sender, EventArgs e)
+        {
+            pageindex += 15;
+            UpdateStreamList();
         }
     }
 }

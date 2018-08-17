@@ -40,9 +40,10 @@
             this.ConnectButton = new System.Windows.Forms.Button();
             this.ConnectedStream = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.leftbutton = new System.Windows.Forms.Button();
+            this.rightbutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ConnectedStream)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,9 +141,8 @@
             this.ConnectedStream.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ConnectedStream.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4});
+            this.Column4,
+            this.Column2});
             this.ConnectedStream.Location = new System.Drawing.Point(389, 77);
             this.ConnectedStream.Name = "ConnectedStream";
             this.ConnectedStream.ReadOnly = true;
@@ -156,20 +156,6 @@
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "DB";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 45;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "TXT";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 45;
-            // 
             // Column4
             // 
             this.Column4.HeaderText = "Chat";
@@ -177,12 +163,40 @@
             this.Column4.ReadOnly = true;
             this.Column4.Width = 50;
             // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Remove";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // leftbutton
+            // 
+            this.leftbutton.Location = new System.Drawing.Point(207, 48);
+            this.leftbutton.Name = "leftbutton";
+            this.leftbutton.Size = new System.Drawing.Size(44, 23);
+            this.leftbutton.TabIndex = 9;
+            this.leftbutton.Text = "<<";
+            this.leftbutton.UseVisualStyleBackColor = true;
+            this.leftbutton.Click += new System.EventHandler(this.leftbutton_Click);
+            // 
+            // rightbutton
+            // 
+            this.rightbutton.Location = new System.Drawing.Point(257, 48);
+            this.rightbutton.Name = "rightbutton";
+            this.rightbutton.Size = new System.Drawing.Size(44, 23);
+            this.rightbutton.TabIndex = 10;
+            this.rightbutton.Text = ">>";
+            this.rightbutton.UseVisualStyleBackColor = true;
+            this.rightbutton.Click += new System.EventHandler(this.rightbutton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(690, 504);
+            this.Controls.Add(this.rightbutton);
+            this.Controls.Add(this.leftbutton);
             this.Controls.Add(this.ConnectedStream);
             this.Controls.Add(this.ConnectButton);
             this.Controls.Add(this.ChannelName);
@@ -213,9 +227,10 @@
         private System.Windows.Forms.Button ConnectButton;
         private System.Windows.Forms.DataGridView ConnectedStream;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column3;
         private System.Windows.Forms.DataGridViewButtonColumn Column4;
+        private System.Windows.Forms.DataGridViewButtonColumn Column2;
+        private System.Windows.Forms.Button leftbutton;
+        private System.Windows.Forms.Button rightbutton;
     }
 }
 
